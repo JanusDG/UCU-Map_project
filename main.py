@@ -130,7 +130,7 @@ def build_marks(lat, lon, text, data_storage, location):
 
     area = folium.FeatureGroup(name="Number of fims in your year")
 
-    area.add_child(folium.GeoJson(data=open('DATA/world.json', 'r',
+    area.add_child(folium.GeoJson(data=open('DATA/Origin_data/world.json', 'r',
                              encoding='utf-8-sig').read(),
                                 style_function=lambda x: {'fillColor':'grey' if x['properties']['NAME'] not in data_storage.keys()
                         else "green" if data_storage[x['properties']['NAME']] < 10 
