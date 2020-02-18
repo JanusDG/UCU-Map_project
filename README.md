@@ -1,24 +1,27 @@
-# UCU_Map_project
+d# UCU_Map_project
 
 
-Description
+## Description
+This is the University project made by Bilusyak Dmytro
+It inctludes the python module main.py, which generates the map and save it to Map.html
+The Map will include the pointers on up to ten films which were filmed near the location inputed
+Also it paints the country in red if it has more than 200 films, yellow if more than 10, green if less than 10, 
+and if the country is painted grey - the database was unable to find this country.
 
 
+P.S As you can see, there are also one_time_use module which makes city_coordinates.tsv 
+and location_data files using the files that are in Origin_data folder, all of which where provided 
+with the task, except worldcities.csv which was taken from https://simplemaps.com/data/world-cities
 
-Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+## Requirements 
+```
+pip install folium
+```
 
-Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-
-Project status
+## Usage
+```bash
+janusdg@xps:~/UCU/IT/Py/UCU/Labs/UCU_Map_project$ /usr/bin/python3 main.py
+Вкажи рік 2004
+Де ти? 4.200001, 69.00001
+```
+## Project status
