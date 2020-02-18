@@ -41,15 +41,18 @@ so that you wont be able to see all of them, until you zoom the map to it's maxi
 
 
 # The description of the html file
+```
 <!DOCTYPE html> - meaning that it should use the latest version of HTML5 
+
 <head></head> - the header   
+
 <body></body> - the main part of the page
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> - the desctiption of the html file and what it is for
 <script></script> - the action to make
 var - html varible
 function - html function
 <style> </style> - styling withot css
-
+```
  
 ## Project status
 The modules are ready to use and are up to date
