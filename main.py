@@ -3,12 +3,10 @@ import folium
 
 def create_year_dict(path_to_created_tsv, customer_year):
     """
-    gets : path to location_data.list, year
-
-    gives : 
-    {'Name of the film': [list of countries]}
+    The function returns the dictionary with the 
+    name of a film as its key and the info about it as the value
     """
-    with open(path_to_created_tsv, "r",encoding='utf-8' ) as work_data:
+    with open(path_to_created_tsv, "r",encoding='ISO-8859-1' ) as work_data:
         year_dict = {}
         
         for item in work_data.readlines():
@@ -21,6 +19,10 @@ def create_year_dict(path_to_created_tsv, customer_year):
 
 
 def find_nearest(year_dict, dt, customer_latitude, customer_longitude):
+    """
+    The function returns the list of the films, which were 
+    filmed near the specific location 
+    """
     all_cities = []
     i = 0.5
     while True:
@@ -41,12 +43,13 @@ def find_nearest(year_dict, dt, customer_latitude, customer_longitude):
 def deferentiate(year_dict):
 
     """
-    max = 1755 films in values
+    The function returns the dictioanry with the country as the key 
+    and the number of films, which were filmed in that year
 
     {country: number of appearings in films}
     """
     nanana = {}
-    for key, value in year_dict.items():
+    for value in year_dict.values():
         for country in value:
             if country not in nanana.keys():
                 nanana[country] = 1
@@ -58,11 +61,9 @@ def deferentiate(year_dict):
 
 def create_needed_dictionary(path_to_file):
     """
-
-    gets : path to city_coordinates.tsv
-
-    gives : 
-    {contry : list of coordinates}
+    The function returns the dictionary with the 
+    name of a film as its key and the list of its coordinates as the value
+    using the tsv file and the customer's year 
     """
 
     with open(path_to_file, "r", encoding="utf-8") as file:
@@ -81,12 +82,7 @@ def create_needed_dictionary(path_to_file):
            
 def create(list_of_nearest):
     """
-    ['Friderikusz: Az йn mozim folytatуdik', 'Budapest', 47.5, 19.0833]
-    ['Millenniumi mesйk', 'Budapest', 47.5, 19.0833]
-    ['Pasik!', 'Budapest', 47.5, 19.0833]
-    ['Big Babies in Budapest 4', 'Budapest', 47.5, 19.0833]
-    ['Dangerous Things', 'Budapest', 47.5, 19.0833]
-    ['Dangerous Things 2', 'Budapest', 47.5, 19.0833]
+    the function splits the info about the nearest films
     """
     lat = []
     lon = []
@@ -110,6 +106,11 @@ def create(list_of_nearest):
 
 
 def build_marks(lat, lon, text, data_storage, location):
+    """
+    The function creates the html file with the map with needed 
+    pointers on the films and the colors for each country, depending 
+    on the number of films, which were filmed there
+    """
     lat, lon, text = create(list_of_nearest)
 
     map = folium.Map(location=location, zoom_start=7)
@@ -129,7 +130,7 @@ def build_marks(lat, lon, text, data_storage, location):
 
     area = folium.FeatureGroup(name="Number of fims in your year")
 
-    area.add_child(folium.GeoJson(data=open('/home/janusdg/UCU/IT/Py/UCU/Labs/Labs2.index/Lab2.2/Lab2.2.2/DATA/world.json', 'r',
+    area.add_child(folium.GeoJson(data=open('DATA/world.json', 'r',
                              encoding='utf-8-sig').read(),
                                 style_function=lambda x: {'fillColor':'grey' if x['properties']['NAME'] not in data_storage.keys()
                         else "green" if data_storage[x['properties']['NAME']] < 10 
@@ -140,10 +141,14 @@ def build_marks(lat, lon, text, data_storage, location):
     map.add_child(area)
 
     map.add_child(folium.LayerControl())
-    map.save('/home/janusdg/UCU/IT/Py/UCU/Labs/Labs2.index/Lab2.2/Lab2.2.2/Map.html')
+    map.save('Map.html')
 
 
 def create_covering(data_storage, dt):
+    """
+    This function make the proper dictionary to 
+    make build_marks function able to work with .json file 
+    """
     result = {}
 
     for key, value in dt.items():
@@ -155,7 +160,9 @@ def create_covering(data_storage, dt):
 
 
 def normal_input():
-
+    """
+    The function make the customer unable to input wrong coordinates
+    """
     while True:
         try:
             customer_year = int(input("Вкажи рік "))
@@ -188,9 +195,9 @@ if __name__ == "__main__":
     customer_longitude = customer_location[1]
     
 
-    year_dict = create_year_dict(r"/home/janusdg/UCU/IT/Py/UCU/Labs/Labs2.index/Lab2.2/Lab2.2.2/DATA/location_data.list", customer_year)
+    year_dict = create_year_dict(r"DATA/location_data.list", customer_year)
     data_storage = deferentiate(year_dict)
-    dt = create_needed_dictionary(r"/home/janusdg/UCU/IT/Py/UCU/Labs/Labs2.index/Lab2.2/Lab2.2.2/DATA/city_coordinates.tsv")
+    dt = create_needed_dictionary(r"DATA/city_coordinates.tsv")
     list_of_nearest = find_nearest(year_dict, dt, customer_latitude, customer_longitude)
 
     dict_to_build_covering = create_covering(data_storage, dt)
