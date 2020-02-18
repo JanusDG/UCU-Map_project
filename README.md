@@ -1,4 +1,4 @@
-d# UCU_Map_project
+# UCU_Map_project
 
 
 ## Description
@@ -23,5 +23,23 @@ pip install folium
 janusdg@xps:~/UCU/IT/Py/UCU/Labs/UCU_Map_project$ /usr/bin/python3 main.py
 Вкажи рік 2004
 Де ти? 4.200001, 69.00001
+
 ```
+[]!(sample_of_execution)
+
+## Output 
+[]!(start_page)
+This is what would you see if you run the module with these parameters
+
+[]!(description)
+If you move the map, you could see the names of the films
+
+Also, keep in mind that there could happen a situation when all films were filmed at the same place, 
+so that you wont be able to see all of them, until you zoom the map to it's maximum
+[]!(all_in_one_place)
+
+
+
+
 ## Project status
+The modules are ready to use and are up to date
